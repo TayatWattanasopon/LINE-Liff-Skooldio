@@ -15,21 +15,26 @@
     <p id="version"><b>Version:</b></p>
     <p id="isInClient"><b>isInClient:</b></p>
     <p id="accessToken"><b>AccessToken:</b></p>
-    <img id="pictureUrl" src="https://mokmoon.com/images/ic_liff.png" />
-    <p id="userId"><b>userId:</b></p>
-    <p id="displayName"><b>displayName:</b></p>
-    <p id="statusMessage"><b>statusMessage:</b></p>
-    <p id="decodedIDToken"><b>email:</b></p>
-    <p id="type"><b>type:</b></p>
-    <p id="viewType"><b>viewType:</b></p>
-    <p id="utouId"><b>utouId:</b></p>
-    <p id="roomId"><b>roomId:</b></p>
-    <p id="groupId"><b>groupId:</b></p>
-    <p id="friendship"><b>isFriendship:</b></p>
-    <p id="scanCode"><b>Code:</b></p>
-    <p id="isLoggedIn"><b>isLoggedIn:</b></p>
-    <p id="universalLink1"><b>Universal Link:</b></p>
-    <p id="universalLink2"><b>Universal Link with Query params:</b></p>
+
+    <!-- <p id="displayName"><b>displayName:</b></p> -->
+    <section id="profile">
+      <img id="pictureUrl" src="https://mokmoon.com/images/ic_liff.png" />
+      <p id="userId"><b>userId:</b></p>
+      <p id="displayName"></p>
+      <p id="statusMessage"><b>statusMessage:</b></p>
+      <p id="decodedIDToken"><b>email:</b></p>
+      <p id="type"><b>type:</b></p>
+      <p id="viewType"><b>viewType:</b></p>
+      <p id="utouId"><b>utouId:</b></p>
+      <p id="roomId"><b>roomId:</b></p>
+      <p id="groupId"><b>groupId:</b></p>
+      <p id="friendship"><b>isFriendship:</b></p>
+      <p id="scanCode"><b>Code:</b></p>
+      <p id="isLoggedIn"><b>isLoggedIn:</b></p>
+      <p id="universalLink1"><b>Universal Link:</b></p>
+      <p id="universalLink2"><b>Universal Link with Query params:</b></p>
+    </section>
+
     <p><a href="liff/path/?param=9">Link to Path</a></p>
 
     <button id="btnMsg" onclick="sendMsg()">Send Message</button>
@@ -47,6 +52,7 @@
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
+      const displayName = document.getElementById('displayName');
       function createUniversalLink() {}
 
       async function shareMsg() {}
@@ -70,7 +76,11 @@
         document.getElementById('pictureUrl').src = profile.pictureUrl;
         document.getElementById('userId').append(profile.userId);
         document.getElementsById('statusMessage').append(profile.statusMessage);
-        document.getElementsById('displayName').append(profile.displayName);
+        // document.getElementsById('displayName').append(profile.displayName);
+        displayName.innerHTML = '<b>displayName:</b> ' + profile.displayName;
+        document
+          .getElementsById('decodedIDToken')
+          .append(liff.getDecodedIDToken().email);
       }
 
       function getEnvironment() {
